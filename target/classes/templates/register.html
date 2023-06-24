@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link th:href="@{../css/main.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="hat">
+    <table>
+        <tr>
+            <td>
+                <img th:src="'/img/garment.png'" class="logo">
+            </td>
+            <td>
+                <h1 class="head1">
+                    Виртуальный гардероб
+                </h1>
+                <h2 class="head2">создай свой стильный образ</h2>
+            </td>
+        </tr>
+    </table>
+</div>
+<hr>
+<div class="loginpole">
+    <form class="form-horizontal" method="post" th:action="@{/register}" th:object="${account}"
+          enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="login" class="loginlabel">Логин</label>
+            <div class="col-sm-5">
+                <input type="text" th:field="*{login}" id="login" class="login-form-control">
+            </div>
+            <div>
+                <div style="color: red" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="loginlabel">Пароль</label>
+            <div class="col-sm-5">
+                <input type="password" th:field="*{password}" id="password" class="login-form-control">
+            </div>
+            <div>
+                <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="file" class="loginlabel">Аватар</label>
+            <div class="col-sm-5">
+                <input id="file" type="file" name="avatar" class="login-form-control">
+            </div>
+            <div>
+                <div style="color: red" th:if="${#fields.hasErrors('imageFileName')}"
+                     th:errors="*{imageFileName}"></div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="form-group">
+            <div class="loginbutton">
+                <button type="submit" class="logbtn">Зарегистрироваться</button>
+            </div>
+        </div>
+    </form>
+    <div class="loginbutton">
+        <button type="button" class="allbuttons">
+            <a th:href="@{/login}" th:text="'К форме авторизации'" />
+        </button>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+    <meta charset="UTF-8">
+    <title>Favorites</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link th:href="@{../css/main.css}" rel="stylesheet" />
+</head>
+<body style="height: 100%">
+<div class="hat">
+    <table>
+        <tr>
+            <td>
+                <img th:src="'/img/garment.png'" class="logo">
+            </td>
+            <td>
+                <h1 class="head1">
+                    Виртуальный гардероб
+                </h1>
+                <h2 class="head2">создай свой стильный образ</h2>
+            </td>
+        </tr>
+    </table>
+</div>
+<hr>
+
+
+<div class="menu">
+    <img th:src="'/img/' + ${account.getImageFileName()}" alt="no image uploaded" width="150px" height="150px" style="margin-bottom: 10px" class="avatar"/>
+
+    <h3>МЕНЮ</h3>
+    <br>
+    <hr>
+    <a href="/garments">ГАРДЕРОБ</a>
+    <br>
+    <a href="/tags">ТЭГИ</a>
+    <br>
+    <a href="/events">СОБЫТИЯ</a>
+    <br>
+    <a href="/favorites">ИЗБРАНННОЕ</a>
+    <br>
+    <hr>
+    <br>
+    <br>
+    <form method="post" action="/doLogout">
+        <button type="submit" class="logbtn">Выйти</button>
+    </form>
+</div>
+
+<div class="center" >
+    <div class="col-md-4" style="margin-top: 50px; margin-left: 20px">
+        <div th:each="look : ${looks}">
+            <div class="one-line">
+                <div th:each="garment : ${look.getAllGarments()}" class="favproduct" style="display: inline-block">
+                            <img th:src="'/img/' + ${garment.getImageFileName()}" alt="no image uploaded"
+                                 class="img-rounded"
+                                 width="200px" height="250px" style="border-radius: 10px"/>
+                            <div class="caption">
+                                <h4 th:text="${garment.getTitle()}"/>
+                                <h5 th:text="${garment.getDescription()}"/>
+                            </div>
+                </div>
+            <form method="post" th:action="@{/favorites/delete/{id} (id=${look.getId()})}" style="margin-left: 50px; display: inline-block">
+                        <input type="submit" value="Удалить" class="allbuttons">
+            </form>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+<!--<button type="button" class="allbuttons">
+    <a th:href="@{/garments/edit/{id}(id=${garment.getId()})}" th:text="Детали"
+       />
+</button>-->

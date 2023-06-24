@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error page</title>
+    <link th:href="@{../css/main.css}" rel="stylesheet" />
+</head>
+<body>
+<h1>Error</h1>
+<hr/>
+<p th:text="${param.error}"/>
+<hr/>
+<a href="/register">Registration</a>
+<a href="/login">Вход</a>
+</body>
+</html>

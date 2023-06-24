@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new tag</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link th:href="@{../../css/main.css}" rel="stylesheet" />
+</head>
+<body style="height: 100%">
+<div class="hat">
+    <table>
+        <tr>
+            <td>
+                <img th:src="'/img/garment.png'" class="logo">
+            </td>
+            <td>
+                <h1 class="head1">
+                    Виртуальный гардероб
+                </h1>
+                <h2 class="head2">создай свой стильный образ</h2>
+            </td>
+        </tr>
+    </table>
+</div>
+<hr>
+
+
+<div class="menu">
+    <img th:src="'/img/' + ${account.getImageFileName()}" alt="no image uploaded" width="150px" height="150px" style="margin-bottom: 10px" class="avatar"/>
+
+    <h3>МЕНЮ</h3>
+    <br>
+    <hr>
+    <a href="/garments">ГАРДЕРОБ</a>
+    <br>
+    <a href="/tags">ТЭГИ</a>
+    <br>
+    <a href="/events">СОБЫТИЯ</a>
+    <br>
+    <a href="/favorites">ИЗБРАНННОЕ</a>
+    <br>
+    <hr>
+    <a href="/tags">НАЗАД</a>
+    <br>
+    <hr>
+    <br>
+    <br>
+    <form method="post" action="/doLogout">
+        <button type="submit" class="logbtn">Выйти</button>
+    </form>
+</div>
+
+<div class="center">
+    <form  style="margin-top: 50px; margin-left: 50px;" method="post" th:action="@{/tags/edit/{id}(id=${tag.getId()})}" th:object="${tag}">
+        <div style="margin-bottom: 20px">
+            <label for="name" class="anotherlabel" style="margin-bottom: 10px;">Название</label>
+            <div class="col-sm-5"  >
+                <input th:field="*{name}" type="text" placeholder="Введите тэг" name="name" id="name" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="Сохранить" class="allbuttons">
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
